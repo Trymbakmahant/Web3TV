@@ -1,14 +1,23 @@
 import { Routes, Route } from "react-router-dom";
 
-// import Home from "../home/Home";
+import Main from "../Videos/Main";
 
-import WorldCoin from "../pages/WorldCoin";
+import WorldCoin from "../Pages/WorldCoin";
+import SimplePlayer from "../Videos/Player";
 
+import UploadHOme from "../Videos/Home";
+
+import LiveStreaming from "../Videos/LiveStream";
 const Paths = () => {
   return (
     <Routes>
-      {/* <Route exact path="/home" element={<Home />} /> */}
       <Route exact path="/" element={<WorldCoin />} />
+
+      <Route exact path="/uploadvideo" element={<Main />} />
+      <Route exact path="/player/:id" element={<SimplePlayer />} />
+      <Route exact path="/UploadHome" element={<UploadHOme />} />
+
+      <Route exact path="/LiveStream" element={<LiveStreaming />} />
     </Routes>
   );
 };

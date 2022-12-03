@@ -35,6 +35,10 @@ function Navbar() {
     ctx.sharedState.setData(provider, signer, contract, accounts[0]);
   };
 
+  const showNotificationsHandler = () => {
+    navigate("/notifications");
+  };
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -62,7 +66,7 @@ function Navbar() {
                 style={{ marginRight: "20px" }}
                 exact
                 className="nav-link btn-ghost"
-                to="/UploadHOme"
+                to="/LiveStream"
               >
                 liveStream
               </Link>
@@ -85,7 +89,7 @@ function Navbar() {
           className="btn btn-ghost btn-circle"
           style={{ marginRight: "20px", marginLeft: "20px" }}
         >
-          <div className="indicator">
+          <div className="indicator" onClick={showNotificationsHandler}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
