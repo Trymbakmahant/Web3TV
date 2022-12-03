@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-function UploadHOme() {
+function Subscriber() {
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content text-center">
@@ -11,18 +10,9 @@ function UploadHOme() {
             in FreeSpeech you have freedom to share your content with others
             without having to worry about world . if you have good content.
           </p>
-          <Link
-            style={{ marginRight: "20px" }}
-            exact
-            className="btn btn-primary"
-            to="/uploadvideo"
-          >
-            Upload Video
-          </Link>
         </div>
       </div>
     </div>
   );
 }
-
-export default UploadHOme;
+export default Subscriber;

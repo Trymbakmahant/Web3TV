@@ -1,4 +1,4 @@
-export const ABI =  [
+export const ABI =   [
   {
     "inputs": [
       {
@@ -104,6 +104,10 @@ export const ABI =  [
     "type": "event"
   },
   {
+    "stateMutability": "payable",
+    "type": "fallback"
+  },
+  {
     "inputs": [],
     "name": "actionId",
     "outputs": [
@@ -126,7 +130,7 @@ export const ABI =  [
     ],
     "name": "addSubscription",
     "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "payable",
     "type": "function"
   },
   {
@@ -167,6 +171,53 @@ export const ABI =  [
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "checkPush",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "contentArray",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "playbackID",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "creator",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -183,8 +234,23 @@ export const ABI =  [
     "outputs": [
       {
         "internalType": "string",
-        "name": "",
+        "name": "name",
         "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "playbackID",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "creator",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -204,6 +270,47 @@ export const ABI =  [
         "internalType": "address",
         "name": "",
         "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_creator",
+        "type": "address"
+      }
+    ],
+    "name": "getCreatorContent",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "playbackID",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "creator",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct Youtube.Content[]",
+        "name": "",
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",
@@ -295,8 +402,23 @@ export const ABI =  [
     "inputs": [
       {
         "internalType": "string",
-        "name": "_ipfsUrl",
+        "name": "_name",
         "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_playback",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_creator",
+        "type": "address"
       }
     ],
     "name": "newContent",
@@ -350,6 +472,25 @@ export const ABI =  [
         "internalType": "address",
         "name": "",
         "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "push",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -446,6 +587,11 @@ export const ABI =  [
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "creator",
+        "type": "address"
+      },
+      {
         "internalType": "uint256",
         "name": "_tokenId",
         "type": "uint256"
@@ -459,6 +605,60 @@ export const ABI =  [
     "name": "setReviseId",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "showContent",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "playbackID",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "creator",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct Youtube.Content[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_addr",
+        "type": "address"
+      }
+    ],
+    "name": "showSubscribers",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -619,6 +819,30 @@ export const ABI =  [
     "inputs": [
       {
         "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateRevision",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "signal",
         "type": "address"
       },
@@ -655,6 +879,10 @@ export const ABI =  [
     ],
     "stateMutability": "view",
     "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
   }
 ]
-export const contractAddress = "0x880e2e59748A38cE9A5de8c65f4A57A9E60CbD4D";
+export const contractAddress = "0x06D280A84f6e92753fC1f1f3f4AC49Ef05aFB792";

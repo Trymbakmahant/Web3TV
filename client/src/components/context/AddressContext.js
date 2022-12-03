@@ -29,20 +29,12 @@ const AppWrapper = (props) => {
     console.log(root1);
     console.log(contract.contractData);
     try {
-      // await contract.contractData.verifyAndExecute(
-      //   signal,
-      //   root1,
-      //   nullifier,
-      //   unpackedProof,
-      //   { gasLimit: 600000 }
-      // );
       console.log(unpackedProof);
       const retVal = await contract.contractData.verifyAndExecute(
         signal,
         root,
         nullifier,
-        unpackedProof,
-        { gasLimit: 600000 }
+        unpackedProof
       );
       await retVal.wait();
       console.log("result: ", retVal);

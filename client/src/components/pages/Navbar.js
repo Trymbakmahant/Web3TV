@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../context/AddressContext";
 import { ABI, contractAddress } from "../constants/index";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
 function Navbar() {
@@ -14,16 +14,19 @@ function Navbar() {
   let contract;
 
   useEffect(() => {
+
     const http = axios.create({
       baseURL: "https://api.starton.io/v3",
       headers: {
-        "x-api-key": "sk_live_14d99f8a-52f0-43ce-be7f-5176563bac12",
+        "x-api-key": 'sk_live_14d99f8a-52f0-43ce-be7f-5176563bac12',
       },
-    });
+    })
     ctx.sharedState.setStarton(http);
+    
   }, []);
 
   const connectFormHandler = async () => {
+
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
@@ -33,6 +36,10 @@ function Navbar() {
     contract = new ethers.Contract(contractAddress, ABI, signer);
 
     ctx.sharedState.setData(provider, signer, contract, accounts[0]);
+  };
+
+  const showNotificationsHandler = () => {
+    navigate('/notifications');
   };
 
   return (
@@ -62,7 +69,7 @@ function Navbar() {
                 style={{ marginRight: "20px" }}
                 exact
                 className="nav-link btn-ghost"
-                to="/LiveStream"
+                to="/UploadHOme"
               >
                 liveStream
               </Link>
@@ -75,9 +82,9 @@ function Navbar() {
           style={{ marginRight: "20px" }}
           exact
           className="btn btn-ghost normal-case text-xl"
-          to="/home"
+          to="/"
         >
-          WEB3TV
+          FreeSpeech
         </Link>
       </div>
       <div className="navbar-end">
@@ -85,7 +92,7 @@ function Navbar() {
           className="btn btn-ghost btn-circle"
           style={{ marginRight: "20px", marginLeft: "20px" }}
         >
-          <div className="indicator">
+          <div className="indicator" onClick = {showNotificationsHandler}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -109,12 +116,7 @@ function Navbar() {
           exact
           className=" btn btn-outline"
         >
-          {accountAddress
-            ? `${accountAddress.substr(0, 5)}...${accountAddress.substr(
-                37,
-                42
-              )}`
-            : "connect"}
+          {accountAddress ? `${accountAddress.substr(0, 5)}...${accountAddress.substr(37,42)}` :"connect"}
         </button>
       </div>
     </div>
