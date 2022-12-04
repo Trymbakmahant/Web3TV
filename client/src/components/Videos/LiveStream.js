@@ -1,18 +1,20 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 function LiveStreaming() {
   const [name, setName] = useState("");
+  const [playbackId, setPlaybackId] = useState("");
   const [streamKey, setStreamKey] = useState("");
-  const [flag, setFlag] = useState("");
-  const Name = name;
+  const [flag, setFlag] = useState(false);
+
   const handleChange = (event) => {
     setName(event.target.value);
 
     console.log("value is:", event.target.value);
   };
-  async function LiveStream(Name, flag) {
+  async function LiveStream() {
     const data = {
-      name: Name,
+      name: name,
       record: flag,
       profiles: [
         {
@@ -45,6 +47,7 @@ function LiveStreaming() {
           authorization: `Bearer ${"b315777b-a6d4-4213-baf3-2d842d06dcb5"}`,
         },
       });
+      setPlaybackId(ans.data.playbackId);
       setStreamKey(ans.data.streamKey);
       console.log(ans.data.streamKey);
     } catch (err) {
@@ -62,28 +65,42 @@ function LiveStreaming() {
             id={"my-input"}
             type={"text"}
             value={name}
+            style={{ width: "400" }}
             placeholder={"Type here"}
             onChange={(event) => {
               setName(event.target.value);
             }}
           />
         </div>
-        <label className="swap">
-          <input type="checkbox" />
-          <div className="swap-on">ON</div>
-          <div className="swap-off">OFF</div>
-        </label>
+
         <button
           className="btn btn-ghost"
-          onClick={LiveStream(Name)}
+          onClick={LiveStream}
           style={{ width: "200px" }}
         >
           Generate Stream Key
         </button>
-        <div>
-          <h1>{streamKey}</h1>
-        </div>
+        <button
+          className="btn btn-ghost"
+          onClick={() => {
+            setFlag(true);
+            alert("your livestream is going to be record");
+          }}
+          style={{ width: "190px" }}
+        >
+          click to record
+        </button>
       </div>
+      <Link
+        style={{ marginRight: "20px" }}
+        exact
+        className="nav-link btn-ghost"
+        to={"/player/nothing/" + playbackId}
+      >
+        Watch Your live stream
+      </Link>
+      <div>{`StreamKEY =>    ${streamKey}      `}</div>
+      {` Stream Server => srt://rtmp.livepeer.com:2935?streamid=${streamKey}`}
     </>
   );
 }
