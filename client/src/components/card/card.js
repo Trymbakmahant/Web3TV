@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import logo from "../images/logo.png";
 function Card(props) {
   return (
     <div
@@ -7,7 +7,8 @@ function Card(props) {
       style={{ height: "250px", marginTop: "7%", width: "650px" }}
     >
       <figure>
-        <img src={props.thumbnail} alt="Shoes" style={{ width: "50px" }} />
+        {/* <img src={logo} alt="Shoes" style={{ width: "70px" }} /> */}
+        <button className="btn btn-ghost">Web3TV</button>
       </figure>
       <div className="card-body">
         <h2 className="card-title">{props.name}</h2>

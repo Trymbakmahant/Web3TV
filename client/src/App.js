@@ -16,20 +16,20 @@ const client = createReactClient({
 });
 
 function App() {
-  const [isVerified, setIsVerified] = useState(true);
+  const [isVerified, setIsVerified] = useState(false);
   const ctx = useContext(AppContext);
 
   const contract = ctx.sharedState.contract.contractData;
   const accountAddress = ctx.sharedState.contract.accountAddress;
 
-  // useEffect(() => {
-  //   if (accountAddress) {
-  //     (async function () {
-  //       const verification = await contract.isVerified(accountAddress);
-  //       setIsVerified(verification);
-  //     })();
-  //   }
-  // }, [accountAddress]);
+  useEffect(() => {
+    if (accountAddress) {
+      (async function () {
+        const verification = await contract.isVerified(accountAddress);
+        setIsVerified(verification);
+      })();
+    }
+  }, [accountAddress]);
 
   return (
     <>
