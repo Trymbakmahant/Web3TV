@@ -7,7 +7,7 @@ const WorldCoin = () => {
     <div style={{ margin: "15% 37%" }}>
       {" "}
       <WorldIDWidget
-        actionId="wid_staging_3fb04a34017a65256af18a20adb15699" // obtain this from developer.worldcoin.org
+        actionId="wid_staging_719d782ac38be75a36cbba66c90828e4" // obtain this from developer.worldcoin.org
         signal={ctx.sharedState.contract.accountAddress}
         enableTelemetry
         onSuccess={(obj) => {
