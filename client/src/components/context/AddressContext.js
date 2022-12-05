@@ -4,14 +4,14 @@ import { ethers } from "ethers";
 export const AppContext = createContext({});
 
 const AppWrapper = (props) => {
-    const [contract, setContract] = useState({
-        provider: null,
-        signer: null,
-        contractData: null,
-        accountAddress: null
-    });
+  const [contract, setContract] = useState({
+    provider: null,
+    signer: null,
+    contractData: null,
+    accountAddress: null,
+  });
 
-    const [http, setHttp] = useState(null);
+  const [http, setHttp] = useState(null);
 
   const provideWorldCoinAddress = async (
     signal,
@@ -45,29 +45,27 @@ const AppWrapper = (props) => {
   };
   /**provideWorldCoinAddress ends here */
 
-  
   const setData = (provider, signer, contractData, accountAddress) => {
-
     setContract((prevState) => {
-        return {
-            provider,
-            signer,
-            contractData,
-            accountAddress
-        }
-    })
-}
+      return {
+        provider,
+        signer,
+        contractData,
+        accountAddress,
+      };
+    });
+  };
 
   const setStarton = (startonUrl) => {
     setHttp(startonUrl);
-  }
+  };
 
   const sharedState = {
     setData,
     contract,
     provideWorldCoinAddress,
     setStarton,
-    http
+    http,
   };
 
   return (

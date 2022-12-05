@@ -66,7 +66,9 @@ function Navbar() {
                 style={{ marginRight: "20px" }}
                 exact
                 className="nav-link btn-ghost"
-                to="/uploadvideo"
+
+                to="/live"
+
               >
                 liveStream
               </Link>
