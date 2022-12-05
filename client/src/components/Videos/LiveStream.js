@@ -44,7 +44,7 @@ function LiveStreaming() {
       const ans = await axios.post("https://livepeer.studio/api/stream", data, {
         headers: {
           "Content-Type": "application/json",
-          authorization: `Bearer ${"b315777b-a6d4-4213-baf3-2d842d06dcb5"}`,
+          authorization: `Bearer ${"4402a176-ddeb-4ecc-bfd6-ea9be0466f11"}`,
         },
       });
       setPlaybackId(ans.data.playbackId);

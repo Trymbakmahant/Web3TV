@@ -4,14 +4,14 @@ import { ethers } from "ethers";
 export const AppContext = createContext({});
 
 const AppWrapper = (props) => {
-  const [contract, setContract] = useState({
-    provider: null,
-    signer: null,
-    contractData: null,
-    accountAddress: null,
-  });
+    const [contract, setContract] = useState({
+        provider: null,
+        signer: null,
+        contractData: null,
+        accountAddress: null
+    });
 
-  const [http, setHttp] = useState(null);
+    const [http, setHttp] = useState(null);
 
   const provideWorldCoinAddress = async (
     signal,
@@ -29,20 +29,12 @@ const AppWrapper = (props) => {
     console.log(root1);
     console.log(contract.contractData);
     try {
-      // await contract.contractData.verifyAndExecute(
-      //   signal,
-      //   root1,
-      //   nullifier,
-      //   unpackedProof,
-      //   { gasLimit: 600000 }
-      // );
       console.log(unpackedProof);
       const retVal = await contract.contractData.verifyAndExecute(
         signal,
         root,
         nullifier,
-        unpackedProof,
-        { gasLimit: 600000 }
+        unpackedProof
       );
       await retVal.wait();
       console.log("result: ", retVal);
@@ -53,27 +45,29 @@ const AppWrapper = (props) => {
   };
   /**provideWorldCoinAddress ends here */
 
+  
   const setData = (provider, signer, contractData, accountAddress) => {
+
     setContract((prevState) => {
-      return {
-        provider,
-        signer,
-        contractData,
-        accountAddress,
-      };
-    });
-  };
+        return {
+            provider,
+            signer,
+            contractData,
+            accountAddress
+        }
+    })
+}
 
   const setStarton = (startonUrl) => {
     setHttp(startonUrl);
-  };
+  }
 
   const sharedState = {
     setData,
     contract,
     provideWorldCoinAddress,
     setStarton,
-    http,
+    http
   };
 
   return (
